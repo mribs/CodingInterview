@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class Main {
@@ -19,17 +19,50 @@ public class Main {
       String input = JOptionPane.showInputDialog("Enter the string you want to reverse: \n");
       String output = new ReverseString(input).ReverseTheString();
       JOptionPane.showMessageDialog(null, "Your string in Reverse is: " + output);
+
       //The only way out is to exit from the menu :)
       OptionMenu();
     }
     //Greatest Integer Option
     else if (userChoice.equals("2") || userChoice.equalsIgnoreCase("Find the greatest integer")) {
-      System.out.println("Enter three integers: ");
+      ArrayList<Integer> numbers = new ArrayList<>();
 
+      //fill in integer list
+      while (true) {
+        String input = JOptionPane.showInputDialog("Enter an integer (or done): \n");
+        if (input.equals("done")) {
+          break;
+        }
+        try {
+          int number = Integer.parseInt(input);
+          numbers.add(number);
+        } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(null, "That's not an integer, try again...");
+        }
+
+      }
+      //find and output greatest
+      GreatestInteger intList = new GreatestInteger(numbers);
+      int output = intList.FindGreatestInteger();
+      JOptionPane.showMessageDialog(null, "The greatest integer is " + output);
+
+      OptionMenu();
     }
     else if (userChoice.equals("3") || userChoice.equalsIgnoreCase("Calculate the factorial of an integer")) {
-      System.out.println("Enter an integer: ");
 
+      int number = 0;
+      String input = JOptionPane.showInputDialog("Enter the integer you want to find the factorial of: ");
+      try {
+        number = Integer.parseInt(input);
+      } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "That's not an integer, try again...");
+      }
+
+      //get factorial
+      int factorialed = new Factorial(number).CalcFactorial();
+      JOptionPane.showMessageDialog(null, "The factorial of " + number + " is " + factorialed);
+
+      OptionMenu();
     }
     else if (userChoice.equals("4") || userChoice.equalsIgnoreCase("Get the Nth entry of the fibonacci sequence")) {
       System.out.println("Enter an integer: ");
@@ -40,8 +73,8 @@ public class Main {
       return;
     }
     else {
-      System.out.println("Sorry, I don't understand. Please try again.");
-      //OptionMenu();
+      JOptionPane.showMessageDialog(null,"Sorry, I don't understand. Please try again.");
+      OptionMenu();
     }
 
   }

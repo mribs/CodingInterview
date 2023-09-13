@@ -1,2 +1,24 @@
-package PACKAGE_NAME;public class GreatestInteger {
+import java.util.ArrayList;
+
+
+public class GreatestInteger {
+  int greatest;
+  ArrayList<Integer> numbers;
+
+  public GreatestInteger(ArrayList<Integer> numbers) {
+    this.numbers = numbers;
+    this.greatest = 0;
+
+
+  }
+
+
+  public int FindGreatestInteger() {
+    for (int number : numbers) {
+      if (number > greatest) greatest = number;
+    }
+
+    return greatest;
+  }
+
 }
