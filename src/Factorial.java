@@ -10,6 +10,7 @@ public class Factorial {
   }
 
   public int CalcFactorial() {
+    //Calculate the factorial
     while (next != 0) {
       solution = solution * next;
       System.out.println(solution);

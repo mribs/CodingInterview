@@ -14,7 +14,7 @@ public class Main {
             "Select an option or type \"exit\": \n" + "1: Reverse a string\n" + "2: Find the greatest integer\n" +
             "3: Calculate the factorial of an integer\n" + "4: Get the Nth entry of the fibonacci sequence\n");
 
-  //Reverse String Option
+    //Reverse String Option
     if (userChoice.equals("1") || userChoice.equalsIgnoreCase("Reverse a string")) {
       String input = JOptionPane.showInputDialog("Enter the string you want to reverse: \n");
       String output = new ReverseString(input).ReverseTheString();
@@ -27,7 +27,7 @@ public class Main {
     else if (userChoice.equals("2") || userChoice.equalsIgnoreCase("Find the greatest integer")) {
       ArrayList<Integer> numbers = new ArrayList<>();
 
-      //fill in integer list
+      //Fill in integer list and validate input
       while (true) {
         String input = JOptionPane.showInputDialog("Enter an integer (or done): \n");
         if (input.equals("done")) {
@@ -51,27 +51,52 @@ public class Main {
     else if (userChoice.equals("3") || userChoice.equalsIgnoreCase("Calculate the factorial of an integer")) {
 
       int number = 0;
-      String input = JOptionPane.showInputDialog("Enter the integer you want to find the factorial of: ");
-      try {
-        number = Integer.parseInt(input);
-      } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "That's not an integer, try again...");
+
+      //Loop to make sure input is valid
+      while (true) {
+        String input=JOptionPane.showInputDialog("Enter the integer you want to find the factorial of: ");
+        try {
+          number=Integer.parseInt(input);
+          break;
+        } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(null, "That's not an integer, try again...");
+
+        }
       }
 
-      //get factorial
+      //Get factorial
       int factorialed = new Factorial(number).CalcFactorial();
       JOptionPane.showMessageDialog(null, "The factorial of " + number + " is " + factorialed);
 
       OptionMenu();
     }
+    //Fibonacci
     else if (userChoice.equals("4") || userChoice.equalsIgnoreCase("Get the Nth entry of the fibonacci sequence")) {
-      System.out.println("Enter an integer: ");
+      int number = 0;
+      //Loop to make sure input is valid
+      while (true) {
+        String input=JOptionPane.showInputDialog("Enter N as an integer: ");
+        try {
+          number=Integer.parseInt(input);
+          break;
+        } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(null, "That's not an integer, try again...");
+        }
+      }
 
+      //Fibonacci
+      int fibonacci = new Fibonacci(number).CalcToN();
+      //TODO: change so that if N = 0 - 3 it isn't 3th (or similar)
+      JOptionPane.showMessageDialog(null, "The " + number + "th entry of the fibonacci sequence is " + fibonacci);
+
+      OptionMenu();
     }
+    //Exit path
     else if (userChoice.equalsIgnoreCase("exit")) {
       JOptionPane.showMessageDialog(null,"See you later!");
       return;
     }
+    //Invalid input
     else {
       JOptionPane.showMessageDialog(null,"Sorry, I don't understand. Please try again.");
       OptionMenu();

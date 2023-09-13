@@ -8,9 +8,7 @@ public class ReverseString {
   public ReverseString(String toReverse) {
     this.string = toReverse;
     this.characters = new ArrayList<>();
-
   }
-
   public String ReverseTheString() {
     //create reversed list of characters in string
     for (int i = 0; i < string.length(); i++) {
